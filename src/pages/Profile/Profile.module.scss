@@ -1,0 +1,21 @@
+.profile {
+    .userInfo{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        width: 100%;
+        margin-bottom: 20px;
+
+        .avatar {
+            color: rgba(0, 0, 0, .15);
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #F4F4F4;
+            border-radius: 10px;
+            font-size: 40px;
+        }
+    }
+}

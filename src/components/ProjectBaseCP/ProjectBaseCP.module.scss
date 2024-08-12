@@ -1,0 +1,31 @@
+.control_point {
+
+
+    .header {
+        padding: 10px 15px;
+        border-radius: 6px 6px 0 0;
+        color: #fff;
+        font-size: 14px;
+        display: flex;
+        justify-content: space-between;
+        .info {
+            cursor: help;
+        }
+    }
+
+    .info__block {
+        height: 65px;
+        padding: 10px 15px 25px 15px;
+    }
+
+    .picker__block {
+        padding: 10px 15px 25px 15px;
+        border: 1px solid #f0f0f0;
+        border-radius: 0 0 6px 6px;
+
+        .date__picker {
+            width: 100%;
+            margin-top: 5px;
+        }
+    }
+}

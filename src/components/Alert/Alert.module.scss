@@ -1,0 +1,29 @@
+.alert {
+    position: fixed;
+    bottom: 14px;
+    right: 0;
+    max-width: 403px;
+    width: calc(100% - 28px);
+    z-index: 999;
+    padding: 24px;
+    background: #111111;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin: 0 14px;
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 14px;
+        
+        span:hover {
+            cursor: pointer;
+        }
+    }
+
+    span {
+        color: white;
+        font-size: 15px;
+    }
+}

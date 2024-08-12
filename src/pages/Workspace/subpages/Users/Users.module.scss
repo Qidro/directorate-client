@@ -1,0 +1,14 @@
+.add__user__btn {
+    text-align: right;
+    display: flex;
+    gap: 10px;
+
+    @media (max-width: 425px) {
+        width: 100%;
+        flex-wrap: wrap;
+
+        & > * {
+            width: 100%;
+        }
+    }
+}

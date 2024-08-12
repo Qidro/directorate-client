@@ -1,0 +1,21 @@
+.header {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    border-bottom: 1px solid #F5F5F5;
+    box-sizing: content-box;
+
+    .user {
+        display: flex;
+        line-height: normal;
+        align-items: center;
+        height: 100%;
+        cursor: pointer;
+
+        .text {
+            display: flex;
+            gap: 10px;
+        }
+    }
+}

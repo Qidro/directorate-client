@@ -1,0 +1,38 @@
+.backpacks {
+    .title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+
+            & > * {
+                margin-bottom: 0 !important;
+            }
+        }
+
+        @media (max-width: 942px) {
+            align-items: start;
+            flex-direction: column;
+            gap: 20px;
+
+            .actions {
+                width: 100%;
+                flex-direction: column-reverse;
+
+                & > * {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .tableRow {
+        cursor: pointer;
+    }
+}
