@@ -7,16 +7,17 @@ import CardTitle from "../../../../components/CardTitle/CardTitle";
 
 const {Title} = Typography;
 
-const Proposals: FC<IProposalsProps> = ({success, reject, archived, loading = false}) => {
+const Proposals: FC<IProposalsProps> = ({success, reject, archived, development, loading = false}) => {
     const data: ChartData<'doughnut'> = useMemo(() => ({
-        labels: ['Одобрено', 'Отправлено на доработку', 'Отменено'],
+        labels: ['Одобрено', 'Отправлено на доработку', 'Отменено', 'В разработке'],
         datasets: [
             {
-                data: [success, reject, archived],
+                data: [success, reject, archived, development],
                 backgroundColor: [
                     '#87d068',
                     '#ffa436',
-                    '#ff4646'
+                    '#ff4646',
+                    '#0000ff'
                 ]
             }
         ]

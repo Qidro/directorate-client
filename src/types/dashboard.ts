@@ -14,6 +14,7 @@ export interface IDashboardAdvanced {
         success: number;
         reject: number;
         archived: number;
+        development: number;
     };
     project_count_list: {
         initiation: number;

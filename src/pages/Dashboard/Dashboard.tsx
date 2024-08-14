@@ -64,6 +64,7 @@ const Dashboard = () => {
                             success={advanced.data?.proposal_count_list.success || 0}
                             reject={advanced.data?.proposal_count_list.reject || 0}
                             archived={advanced.data?.proposal_count_list.archived || 0}
+                            development={advanced.data?.proposal_count_list.development || 0}
                             loading={advanced.loading}
                         />
                     </Col>
