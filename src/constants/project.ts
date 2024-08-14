@@ -12,7 +12,7 @@ export const projectStage: {[key: string]: {text: string, color: string}} = {
         color: 'becb64'
     },
     COMPLETION: {
-        text: 'Заверешение',
+        text: 'Завершение',
         color: '87d068'
     },
     POST_PROJECT_MONITORING: {
