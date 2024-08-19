@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const DEV_URL = 'https://project.usma.ru/api'
-const PRODUCTION_URL = 'https://project.usma.ru/api'
+const DEV_URL = 'http://project.usma.ru/api'
+const PRODUCTION_URL = 'http://project.usma.ru/api'
 
 export const API_URL = process.env.NODE_ENV === 'production' ? PRODUCTION_URL : DEV_URL
 
