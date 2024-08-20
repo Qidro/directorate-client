@@ -26,7 +26,7 @@ export class Project {
 
         const res = await ProjectApi.getProject(projectId);
 
-        if (['REALIZATION', 'COMPLETION', 'POST_PROJECT_MONITORING', 'ARCHIVED', 'CANCELED'].includes(res.data.status)) this.setEditable(false)
+        if (['ARCHIVED', 'CANCELED'].includes(res.data.status)) this.setEditable(false)
 
         this.setProjectInformation(res.data);
         return res;
