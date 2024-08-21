@@ -23,7 +23,7 @@ const Authorization = () => {
     const [registration, setRegistration] = useState<boolean>(false)
     const navigate = useNavigate()
 
-
+    //функция проверки авторизации пользователя
     const onFinish = async ({login, password}: IAuthForm) => {
         setLoading(true)
 
@@ -41,6 +41,7 @@ const Authorization = () => {
         setLoading(false)
     }
 
+    //функция нажатия на кнопку "регистрация" и переназначения на форму регистрации
     const Registration = async () => {
         setRegistration(true)
 
@@ -68,6 +69,7 @@ const Authorization = () => {
                                 <Title level={2}>Добро пожаловать!</Title>
                             </div>
 
+                            {/* форма для авторизации */}
                             <Form
                                 size='large'
                                 onFinish={onFinish}
@@ -84,12 +86,13 @@ const Authorization = () => {
                                 
                             </Form>
 
+                            {/* кнопка регистрации */}
                             <Form
                                 size='large'
                                 onFinish={Registration}
                             >
                             <Form.Item>
-                                    <Button htmlType='submit' type='primary' block loading={loading}>Регистрация</Button>
+                                    <Button htmlType='submit' type='primary' block loading={registration}>Регистрация</Button>
                                 </Form.Item>
                                 </Form>
                         </div>
