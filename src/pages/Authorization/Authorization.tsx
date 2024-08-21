@@ -16,9 +16,13 @@ const requiredFormItem = {
 
 const Authorization = () => {
     const userStore = useStore(store => store.user)
-
+    
+    // состояние отвечающая за вход
     const [loading, setLoading] = useState<boolean>(false)
+    // состояние отвечающая за регистрацию
+    const [registration, setRegistration] = useState<boolean>(false)
     const navigate = useNavigate()
+
 
     const onFinish = async ({login, password}: IAuthForm) => {
         setLoading(true)
@@ -36,6 +40,20 @@ const Authorization = () => {
 
         setLoading(false)
     }
+
+    const Registration = async () => {
+        setRegistration(true)
+
+            try {
+                navigate('/registration')
+            } catch (error) {
+                
+                    message.error('Ошибка перназначения')
+                }
+            
+
+            setRegistration(false)
+        }
 
     return (
         <div className={style.auth}>
@@ -63,10 +81,17 @@ const Authorization = () => {
                                 <Form.Item>
                                     <Button htmlType='submit' type='primary' block loading={loading}>Продолжить</Button>
                                 </Form.Item>
-                                <Form.Item>
+                                
+                            </Form>
+
+                            <Form
+                                size='large'
+                                onFinish={Registration}
+                            >
+                            <Form.Item>
                                     <Button htmlType='submit' type='primary' block loading={loading}>Регистрация</Button>
                                 </Form.Item>
-                            </Form>
+                                </Form>
                         </div>
                     </div>
                 </Col>
