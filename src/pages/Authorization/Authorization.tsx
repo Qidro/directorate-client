@@ -63,6 +63,9 @@ const Authorization = () => {
                                 <Form.Item>
                                     <Button htmlType='submit' type='primary' block loading={loading}>Продолжить</Button>
                                 </Form.Item>
+                                <Form.Item>
+                                    <Button htmlType='submit' type='primary' block loading={loading}>Регистрация</Button>
+                                </Form.Item>
                             </Form>
                         </div>
                     </div>
