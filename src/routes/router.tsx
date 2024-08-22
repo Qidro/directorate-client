@@ -49,6 +49,7 @@ import Archive from "../pages/Workspace/subpages/Archive/Archive";
 import ArchivedUsers from "../pages/Workspace/subpages/Archive/subpages/ArchivedUsers/ArchivedUsers";
 import ArchivedProposals from "../pages/Workspace/subpages/Archive/subpages/ArchivedProposals/ArchivedProposals";
 import ArchivedProjects from "../pages/Workspace/subpages/Archive/subpages/ArchivedProjects/ArchivedProjects";
+import Registration from "../pages/Registration/Registration";
 
 export const router = createBrowserRouter([
     {
@@ -62,6 +63,11 @@ export const router = createBrowserRouter([
             <Layout menu={menu}/>
         }/>,
         children: [
+            {
+                // мои изменения
+                path: '/registration',
+                element: <Registration />
+            },
             {
                 path: '/dashboard',
                 element: <Dashboard />
