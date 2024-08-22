@@ -48,7 +48,6 @@ const Authorization = () => {
             try {
                 navigate('/registration')
             } catch (error) {
-                    
                     message.error('Ошибка перназначения')
                 }
             

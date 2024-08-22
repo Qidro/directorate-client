@@ -16,9 +16,18 @@ function App() {
     useEffect(() => {
         const checkAuth = async () => {
             setLoading(true)
-            try {
+            // Проверка URL
+            const currentUrl = window.location.pathname;
+            if (currentUrl === '/registration') {
+                // Ваш код для обработки данного URL
+                console.log('Находимся на нужном URL');
+            }
+            else{
+                try {
                 await userStore.check()
             } catch (e) {}
+            }
+            
             setLoading(false)
         }
 
