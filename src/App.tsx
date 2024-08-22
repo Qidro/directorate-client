@@ -26,9 +26,10 @@ function App() {
                 try {
                 await userStore.check()
             } catch (e) {}
+            setLoading(false)    
             }
             
-            setLoading(false)
+           
         }
 
         const fetchAlert = async () => {
