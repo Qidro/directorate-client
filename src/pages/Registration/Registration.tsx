@@ -1,13 +1,21 @@
 import {useState} from 'react';
 import {Button, Col, Form, Input, message, Row, Typography} from "antd";
 import style from './Registration.module.scss'
-import {IdcardFilled, LockFilled, UpSquareFilled, MailFilled, PhoneFilled} from "@ant-design/icons";
+import {IdcardFilled, LockFilled, UserOutlined, MailFilled, PhoneFilled} from "@ant-design/icons";
 import {useNavigate} from "react-router-dom";
 import {IAuthForm} from "../../types/forms";
 import {AxiosError} from "axios";
 import {useStore} from "../../store";
+import {MaskedInput} from "antd-mask-input";
 
 const {Title} = Typography
+
+interface Options {
+    value: number,
+    label: string,
+    children? : Options[]
+}
+
 
 const requiredFormItem = {
     required: true,
@@ -15,6 +23,10 @@ const requiredFormItem = {
 }
 
 const Registration = () => {
+    const [options, setOptions] = useState<Options[]>([]);
+    const [buttonLoading, setButtonLoading] = useState(false);
+    const [phoneError, setPhoneError] = useState<boolean>(false);
+
     const userStore = useStore(store => store.user)
     
     // состояние отвечающая за регистрацию
@@ -63,7 +75,7 @@ const Registration = () => {
                                     <Input placeholder='Логин' prefix={<IdcardFilled className={style.inputIcon} />}/>
                                 </Form.Item>
                                 <Form.Item name='email' rules={[requiredFormItem]}>
-                                    <Input.Password placeholder='Почта' prefix={<MailFilled className={style.inputIcon} />}/>
+                                    <Input placeholder='Почта' prefix={<MailFilled className={style.inputIcon} />}/>
                                 </Form.Item>
                                 <Form.Item name='FirstPassword' rules={[requiredFormItem]}>
                                     <Input.Password placeholder='Пароль' prefix={<LockFilled className={style.inputIcon} />}/>
@@ -71,17 +83,26 @@ const Registration = () => {
                                 <Form.Item name='SecondPassword' rules={[requiredFormItem]}>
                                     <Input.Password placeholder='Подвердите пароль' prefix={<LockFilled className={style.inputIcon} />}/>
                                 </Form.Item>
-                                <Form.Item name='SecondPassword' rules={[requiredFormItem]}>
-                                    <Input.Password placeholder='Фамилия' prefix={<UpSquareFilled className={style.inputIcon} />}/>
+                                <Form.Item name='lastname' rules={[requiredFormItem]}>
+                                    <Input placeholder='Фамилия' prefix={<UserOutlined className={style.inputIcon} />}/>
                                 </Form.Item>
-                                <Form.Item name='SecondPassword' rules={[requiredFormItem]}>
-                                    <Input.Password placeholder='Имя' prefix={<UpSquareFilled className={style.inputIcon} />}/>
+                                <Form.Item name='firstname' rules={[requiredFormItem]}>
+                                    <Input placeholder='Имя' prefix={<UserOutlined className={style.inputIcon} />}/>
                                 </Form.Item>
-                                <Form.Item name='SecondPassword' rules={[requiredFormItem]}>
-                                    <Input.Password placeholder='Отчество' prefix={<UpSquareFilled className={style.inputIcon} />}/>
+                                <Form.Item name='surname' rules={[requiredFormItem]}>
+                                    <Input placeholder='Отчество' prefix={<UserOutlined className={style.inputIcon} />}/>
                                 </Form.Item>
+                                <Form.Item label="Телефон" name='phone' rules={[{ pattern: /^\+7 \d{3} \d{3} \d{2} \d{2}$/,
+                                message: 'Телефон не соответствует формату' }]}>
+                                <MaskedInput
+                                    mask='+7 000 000 00 00'
+                                    size='middle'
+                                    status={phoneError ? 'error' : ''}
+                                />
+                            </Form.Item>
+
                                 <Form.Item name='SecondPassword' rules={[requiredFormItem]}>
-                                    <Input.Password placeholder='Телефон' prefix={<PhoneFilled className={style.inputIcon} />}/>
+                                    <Input placeholder='Телефон' prefix={<PhoneFilled className={style.inputIcon} />}/>
                                 </Form.Item>
                                 <Form.Item name='SecondPassword' rules={[requiredFormItem]}>
                                     <Input.Password placeholder='Должность' prefix={<LockFilled className={style.inputIcon} />}/>
