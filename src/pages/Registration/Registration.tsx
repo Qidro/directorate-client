@@ -124,8 +124,8 @@ const Registration = () => {
                                     status={phoneError ? 'error' : ''}
                                 />
                                 </Form.Item>
-                                <Form.Item name='positionId' rules={[{ required: true }]}>
-                                    <Input placeholder='Отдел / Должность' prefix={<LockFilled className={style.inputIcon} />}/>
+
+                                <Form.Item label="Отдел / Должность" name='positionId' rules={[{ required: true }]}>
                                     <Cascader
                                         options={options}
                                     />
