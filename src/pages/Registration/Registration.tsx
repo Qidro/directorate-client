@@ -92,7 +92,7 @@ const Registration = () => {
                                 <Form.Item name='surname' rules={[requiredFormItem]}>
                                     <Input placeholder='Отчество' prefix={<UserOutlined className={style.inputIcon} />}/>
                                 </Form.Item>
-                                <Form.Item label="Телефон" name='phone' rules={[{ pattern: /^\+7 \d{3} \d{3} \d{2} \d{2}$/,
+                                <Form.Item name='phone' rules={[{ pattern: /^\+7 \d{3} \d{3} \d{2} \d{2}$/,
                                 message: 'Телефон не соответствует формату' }]}>
                                 <MaskedInput
                                     mask='+7 000 000 00 00'
@@ -100,10 +100,6 @@ const Registration = () => {
                                     status={phoneError ? 'error' : ''}
                                 />
                             </Form.Item>
-
-                                <Form.Item name='SecondPassword' rules={[requiredFormItem]}>
-                                    <Input placeholder='Телефон' prefix={<PhoneFilled className={style.inputIcon} />}/>
-                                </Form.Item>
                                 <Form.Item name='SecondPassword' rules={[requiredFormItem]}>
                                     <Input.Password placeholder='Должность' prefix={<LockFilled className={style.inputIcon} />}/>
                                 </Form.Item>
