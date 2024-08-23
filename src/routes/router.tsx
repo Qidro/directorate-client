@@ -56,18 +56,20 @@ export const router = createBrowserRouter([
         path: '/',
         element: <Unauthorized component={
                 <Authorization />
-            }/>
+            }/>,
+            children: [
+                {
+                    // мои изменения
+                    path: '/registration',
+                    element: <Registration />
+                }
+            ]
     },
     {
         element: <Authorized component={
             <Layout menu={menu}/>
         }/>,
         children: [
-            {
-                // мои изменения
-                path: '/registration',
-                element: <Registration />
-            },
             {
                 path: '/dashboard',
                 element: <Dashboard />
