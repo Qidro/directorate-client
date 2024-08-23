@@ -53,17 +53,15 @@ import Registration from "../pages/Registration/Registration";
 
 export const router = createBrowserRouter([
     {
+        // мои изменения
+        path: '/registration',
+        element: <Registration />
+    },
+    {
         path: '/',
         element: <Unauthorized component={
                 <Authorization />
             }/>,
-            children: [
-                {
-                    // мои изменения
-                    path: '/registration',
-                    element: <Registration />
-                }
-            ]
     },
     {
         element: <Authorized component={
