@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {Button, Col, Form, Input, message, Row, Typography} from "antd";
 import style from './Registration.module.scss'
-import {IdcardFilled, LockFilled} from "@ant-design/icons";
+import {IdcardFilled, LockFilled, UpSquareFilled, MailFilled, PhoneFilled} from "@ant-design/icons";
 import {useNavigate} from "react-router-dom";
 import {IAuthForm} from "../../types/forms";
 import {AxiosError} from "axios";
@@ -63,7 +63,7 @@ const Registration = () => {
                                     <Input placeholder='Логин' prefix={<IdcardFilled className={style.inputIcon} />}/>
                                 </Form.Item>
                                 <Form.Item name='email' rules={[requiredFormItem]}>
-                                    <Input.Password placeholder='Почта' prefix={<LockFilled className={style.inputIcon} />}/>
+                                    <Input.Password placeholder='Почта' prefix={<MailFilled className={style.inputIcon} />}/>
                                 </Form.Item>
                                 <Form.Item name='FirstPassword' rules={[requiredFormItem]}>
                                     <Input.Password placeholder='Пароль' prefix={<LockFilled className={style.inputIcon} />}/>
@@ -72,16 +72,16 @@ const Registration = () => {
                                     <Input.Password placeholder='Подвердите пароль' prefix={<LockFilled className={style.inputIcon} />}/>
                                 </Form.Item>
                                 <Form.Item name='SecondPassword' rules={[requiredFormItem]}>
-                                    <Input.Password placeholder='Фамилия' prefix={<LockFilled className={style.inputIcon} />}/>
+                                    <Input.Password placeholder='Фамилия' prefix={<UpSquareFilled className={style.inputIcon} />}/>
                                 </Form.Item>
                                 <Form.Item name='SecondPassword' rules={[requiredFormItem]}>
-                                    <Input.Password placeholder='Имя' prefix={<LockFilled className={style.inputIcon} />}/>
+                                    <Input.Password placeholder='Имя' prefix={<UpSquareFilled className={style.inputIcon} />}/>
                                 </Form.Item>
                                 <Form.Item name='SecondPassword' rules={[requiredFormItem]}>
-                                    <Input.Password placeholder='Отчество' prefix={<LockFilled className={style.inputIcon} />}/>
+                                    <Input.Password placeholder='Отчество' prefix={<UpSquareFilled className={style.inputIcon} />}/>
                                 </Form.Item>
                                 <Form.Item name='SecondPassword' rules={[requiredFormItem]}>
-                                    <Input.Password placeholder='Телефон' prefix={<LockFilled className={style.inputIcon} />}/>
+                                    <Input.Password placeholder='Телефон' prefix={<PhoneFilled className={style.inputIcon} />}/>
                                 </Form.Item>
                                 <Form.Item name='SecondPassword' rules={[requiredFormItem]}>
                                     <Input.Password placeholder='Должность' prefix={<LockFilled className={style.inputIcon} />}/>
