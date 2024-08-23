@@ -123,16 +123,14 @@ const Registration = () => {
                                     size='middle'
                                     status={phoneError ? 'error' : ''}
                                 />
-                                <Form.Item name='positionId' rules={[{ required: true }]}>
-                                <Input placeholder='Отдел / Должность' prefix={<LockFilled className={style.inputIcon} />}/>
-                                <Cascader
-                                    options={options}
-                                />
-                            </Form.Item>
-                            </Form.Item>
-                                <Form.Item name='SecondPassword' rules={[requiredFormItem]}>
-                                    <Input.Password placeholder='Должность' prefix={<LockFilled className={style.inputIcon} />}/>
                                 </Form.Item>
+                                <Form.Item name='positionId' rules={[{ required: true }]}>
+                                    <Input placeholder='Отдел / Должность' prefix={<LockFilled className={style.inputIcon} />}/>
+                                    <Cascader
+                                        options={options}
+                                    />
+                                </Form.Item>
+                           
                                 
                                 <Form.Item>
                                     <Button htmlType='submit' type='primary' block loading={loading}>Зарегистрироватся</Button>
