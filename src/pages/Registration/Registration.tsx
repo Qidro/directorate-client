@@ -1,9 +1,10 @@
-import {useState} from 'react';
-import {Button, Col, Form, Input, message, Row, Typography} from "antd";
+import {useEffect, useState} from 'react';
+import {Button, Cascader, Col, Form, Input, message, Row, Typography} from "antd";
 import style from './Registration.module.scss'
 import {IdcardFilled, LockFilled, UserOutlined, MailFilled, PhoneFilled} from "@ant-design/icons";
 import {useNavigate} from "react-router-dom";
 import {IAuthForm} from "../../types/forms";
+import OrgStructureApi from "../../api/orgStructure-api";
 import {AxiosError} from "axios";
 import {useStore} from "../../store";
 import {MaskedInput} from "antd-mask-input";
@@ -33,6 +34,26 @@ const Registration = () => {
     const [loading, setLoading] = useState<boolean>(false)
     const navigate = useNavigate()
 
+    const getOptionsData = async () => {
+        const res = await OrgStructureApi.getDepartments();
+
+        const data: Options[] = res.data.filter(item => item.positions.length !== 0).map((department) => {
+            return {
+                value: department.id,
+                label: department.name,
+                children: department.positions.map((position) => {
+                    return {
+                        value: position.id,
+                        label: position.name
+                    };
+                })
+            };
+        });
+
+        setOptions(data);
+    }
+
+
     //функция регистрации пользователя
     const onFinish = async ({login, password}: IAuthForm) => {
         setLoading(true)
@@ -51,6 +72,9 @@ const Registration = () => {
         setLoading(false)
     }
 
+    useEffect(() => {
+        getOptionsData().then();
+    }, []);
 
 
     return (
@@ -99,6 +123,13 @@ const Registration = () => {
                                     size='middle'
                                     status={phoneError ? 'error' : ''}
                                 />
+                                
+                                <Form.Item name='positionId' rules={[requiredFormItem]}>
+                                <Input.Password placeholder='Отдел / Должность' prefix={<LockFilled className={style.inputIcon} />}/>
+                                <Cascader
+                                    options={options}
+                                />
+                            </Form.Item>
                             </Form.Item>
                                 <Form.Item name='SecondPassword' rules={[requiredFormItem]}>
                                     <Input.Password placeholder='Должность' prefix={<LockFilled className={style.inputIcon} />}/>
