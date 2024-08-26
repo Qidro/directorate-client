@@ -86,6 +86,7 @@ const Registration = ({setRegFromOpened, setUsersInfo, usersInfo}: Props) => {
         registration(login, firstname, lastname, surname, password, phone, email, positionId[1]).then(() => {
             setRegFromOpened(false);
             //message.success('Пользователь зарегистрирован!');
+            console.log("Я здесь зарегал пользовтеля")
             userStore.login(login, password)
             navigate('/dashboard')
         }).catch(error => {
