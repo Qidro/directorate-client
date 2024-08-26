@@ -9,6 +9,7 @@ import {AxiosError} from "axios";
 import {useStore} from "../../store";
 import {MaskedInput} from "antd-mask-input";
 import {IRegistration, User} from "../../types/user";
+import UserApi from '../../api/user-api';
 
 const {Title} = Typography
 
@@ -24,10 +25,31 @@ const requiredFormItem = {
     message: ''
 }
 
-const Registration = () => {
+type Props = {
+    setRegFromOpened: (regFormOpened: boolean) => void;
+    setUsersInfo: (usersInfo: User[]) => void;
+    usersInfo: User[];
+}
+
+const Registration = ({setRegFromOpened, setUsersInfo, usersInfo}: Props) => {
     const [options, setOptions] = useState<Options[]>([]);
     const [buttonLoading, setButtonLoading] = useState(false);
     const [phoneError, setPhoneError] = useState<boolean>(false);
+
+    const registration = async (login: string, firstname: string, lastname: string, surname: string,
+        password: string, phone: string, email: string, positionId: number) => {
+    const res = await UserApi.NewRegistration(login, firstname, lastname, surname, password, phone, email, positionId)
+
+    const newUser = {
+    key: res.data.id.toString(),
+    fullname: res.data.fullname,
+    email: res.data.email,
+    positionName: res.data.position ? res.data.position.name : 'Не указана',
+    departmentName: res.data.position ? res.data.position.department.name : 'Не указан'
+    };
+
+    setUsersInfo([...usersInfo, newUser])
+    }
 
     const userStore = useStore(store => store.user)
     
@@ -35,6 +57,7 @@ const Registration = () => {
     const [loading, setLoading] = useState<boolean>(false)
     const navigate = useNavigate()
 
+    //получение списка департаментов для поля "Отдела"
     const getOptionsData = async () => {
         const res = await OrgStructureApi.getDepartments();
 
@@ -56,21 +79,26 @@ const Registration = () => {
 
 
     //функция регистрации пользователя
-    const onFinish = async ({login, password}: IAuthForm) => {
+    const onFinish = ({login, firstname, lastname, surname, password, phone, email, positionId}:IRegistration) => {
         setLoading(true)
+         
 
-        try {
-            await userStore.login(login, password)
+        registration(login, firstname, lastname, surname, password, phone, email, positionId[1]).then(() => {
+            setRegFromOpened(false);
+            message.success('Пользователь зарегистрирован!');
+            userStore.login(login, password)
             navigate('/dashboard')
-        } catch (error) {
-            const e = error as AxiosError
-            if (e.response?.data === 'Wrong login or password') {
-                message.error('Неверный логин или пароль')
+        }).catch(error => {
+            if (error.response.data === 'Login already exist') {
+                message.warning('Логин уже используется!');
+            } else if (error.response.data === 'Position not found') {
+                message.error('Должность не найдена!');
+            } else {
+                message.error('Ошибка регистрации пользователя!');
             }
-            if (e.response?.data === 'Forbidden') message.error('Ваш аккаунт не активен!')
-        }
-
-        setLoading(false)
+        }).finally(() => {
+            setButtonLoading(false)
+        })
     }
 
     const checkPhoneError = (value: any) => {
@@ -80,7 +108,7 @@ const Registration = () => {
             setPhoneError(true);
         }
     };
-    
+
     const onFieldsChange = (data: any) => {
         if (data[0].name[0] === 'phone') checkPhoneError(data[0].value);
     };
