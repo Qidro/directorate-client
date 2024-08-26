@@ -33,13 +33,14 @@ type Props = {
 
 const Registration = ({setRegFromOpened, setUsersInfo, usersInfo}: Props) => {
     const [options, setOptions] = useState<Options[]>([]);
-    const [buttonLoading, setButtonLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [phoneError, setPhoneError] = useState<boolean>(false);
 
     const registration = async (login: string, firstname: string, lastname: string, surname: string,
-        password: string, phone: string, email: string, positionId: number) => {
+        password: string, phone: string, email: string, positionId: number) => { 
+            console.log("Я здесь начал реегать");
     const res = await UserApi.NewRegistration(login, firstname, lastname, surname, password, phone, email, positionId)
-
+    console.log("Я здесь продолжил  регать");
     const newUser = {
     key: res.data.id.toString(),
     fullname: res.data.fullname,
@@ -54,7 +55,6 @@ const Registration = ({setRegFromOpened, setUsersInfo, usersInfo}: Props) => {
     const userStore = useStore(store => store.user)
     
     // состояние отвечающая за регистрацию
-    const [loading, setLoading] = useState<boolean>(false)
     const navigate = useNavigate()
 
     //получение списка департаментов для поля "Отдела"
@@ -82,7 +82,9 @@ const Registration = ({setRegFromOpened, setUsersInfo, usersInfo}: Props) => {
     const onFinish = ({login, firstname, lastname, surname, password, phone, email, positionId}:IRegistration) => {
         setLoading(true)
          
+        //вывод инфы в консольку
         console.log(login, firstname, lastname, surname, password, phone, email, positionId[1]);
+
         registration(login, firstname, lastname, surname, password, phone, email, positionId[1]).then(() => {
             setRegFromOpened(false);
             //message.success('Пользователь зарегистрирован!');
@@ -98,7 +100,7 @@ const Registration = ({setRegFromOpened, setUsersInfo, usersInfo}: Props) => {
                 message.error('Ошибка регистрации пользователя!');
             }
         }).finally(() => {
-            setButtonLoading(false)
+            setLoading(false)
         })
     }
 
