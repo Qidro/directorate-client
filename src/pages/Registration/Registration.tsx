@@ -8,6 +8,7 @@ import OrgStructureApi from "../../api/orgStructure-api";
 import {AxiosError} from "axios";
 import {useStore} from "../../store";
 import {MaskedInput} from "antd-mask-input";
+import {IRegistration, User} from "../../types/user";
 
 const {Title} = Typography
 
@@ -72,6 +73,18 @@ const Registration = () => {
         setLoading(false)
     }
 
+    const checkPhoneError = (value: any) => {
+        if (/^\+7 \d{3} \d{3} \d{2} \d{2}$/.test(value)) {
+            setPhoneError(false);
+        } else {
+            setPhoneError(true);
+        }
+    };
+    
+    const onFieldsChange = (data: any) => {
+        if (data[0].name[0] === 'phone') checkPhoneError(data[0].value);
+    };
+
     useEffect(() => {
         getOptionsData().then();
     }, []);
@@ -94,6 +107,7 @@ const Registration = () => {
                             <Form
                                 size='large'
                                 onFinish={onFinish}
+                                onFieldsChange={onFieldsChange}
                             >
                                 <Form.Item name='login' rules={[requiredFormItem]}>
                                     <Input placeholder='Логин' prefix={<IdcardFilled className={style.inputIcon} />}/>
