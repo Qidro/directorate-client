@@ -146,7 +146,7 @@ const Registration = ({setRegFromOpened, setUsersInfo, usersInfo}: Props) => {
                                 <Form.Item name='email' rules={[requiredFormItem]}>
                                     <Input placeholder='Почта' prefix={<MailFilled className={style.inputIcon} />}/>
                                 </Form.Item>
-                                <Form.Item name='FirstPassword' rules={[requiredFormItem]}>
+                                <Form.Item name='password' rules={[requiredFormItem]}>
                                     <Input.Password placeholder='Пароль' prefix={<LockFilled className={style.inputIcon} />}/>
                                 </Form.Item>
                                 <Form.Item name='SecondPassword' rules={[requiredFormItem]}>
