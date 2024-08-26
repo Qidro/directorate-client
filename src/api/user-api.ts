@@ -29,7 +29,7 @@ class UserApi {
 
     NewRegistration = (login: string, firstname: string, lastname: string, surname: string,
         password: string, phone: string, email: string, position_id: number) => {
-    return request.post<IUser>('/user/NewRegistration', {
+    return request.post<IUser>('/registration/NewRegistration', {
     login, firstname, lastname, surname, password, phone, email, position_id
     });
     }
