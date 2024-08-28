@@ -31,7 +31,7 @@ type Props = {
     usersInfo: User[];
 }
 
-const Registration = ({setRegFromOpened}: Props) => {
+const Registration = () => {
     const [options, setOptions] = useState<Options[]>([]);
     const [loading, setLoading] = useState(false);
     const [phoneError, setPhoneError] = useState<boolean>(false);
@@ -87,7 +87,7 @@ const Registration = ({setRegFromOpened}: Props) => {
 
         registration(login, firstname, lastname, surname, password, phone, email, positionId[1]).then(() => {
             console.log("Я здесь зарегал пользовтеля0");
-            setRegFromOpened(false);
+            
             //message.success('Пользователь зарегистрирован!');
             console.log("Я здесь зарегал пользовтеля1");
             userStore.login(login, password)
