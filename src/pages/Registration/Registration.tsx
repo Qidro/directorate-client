@@ -31,7 +31,7 @@ type Props = {
     usersInfo: User[];
 }
 
-const Registration = () => {
+const Registration = ({setRegFromOpened}: Props) => {
     const [options, setOptions] = useState<Options[]>([]);
     const [loading, setLoading] = useState(false);
     const [phoneError, setPhoneError] = useState<boolean>(false);
