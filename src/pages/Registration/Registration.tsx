@@ -27,11 +27,11 @@ const requiredFormItem = {
 
 type Props = {
     setRegFromOpened: (regFormOpened: boolean) => void;
-    setUsersInfo: (usersInfo: User[]) => void;
+   
     usersInfo: User[];
 }
 
-const Registration = ({setRegFromOpened, setUsersInfo, usersInfo}: Props) => {
+const Registration = ({setRegFromOpened}: Props) => {
     const [options, setOptions] = useState<Options[]>([]);
     const [loading, setLoading] = useState(false);
     const [phoneError, setPhoneError] = useState<boolean>(false);
@@ -41,15 +41,15 @@ const Registration = ({setRegFromOpened, setUsersInfo, usersInfo}: Props) => {
             console.log("Я здесь начал реегать");
     const res = await UserApi.NewRegistration(login, firstname, lastname, surname, password, phone, email, positionId)
     console.log("Я здесь продолжил  регать");
-    const newUser = {
-    key: res.data.id.toString(),
-    fullname: res.data.fullname,
-    email: res.data.email,
-    positionName: res.data.position ? res.data.position.name : 'Не указана',
-    departmentName: res.data.position ? res.data.position.department.name : 'Не указан'
-    };
+    // const newUser = {
+    // key: res.data.id.toString(),
+    // fullname: res.data.fullname,
+    // email: res.data.email,
+    // positionName: res.data.position ? res.data.position.name : 'Не указана',
+    // departmentName: res.data.position ? res.data.position.department.name : 'Не указан'
+    // };
 
-    setUsersInfo([...usersInfo, newUser])
+    //setUsersInfo([...usersInfo, newUser])
     }
 
     const userStore = useStore(store => store.user)
