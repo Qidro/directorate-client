@@ -79,7 +79,7 @@ const Registration = ({setRegFromOpened}: Props) => {
 
 
     //функция регистрации пользователя
-    const onFinish = ({login, firstname, lastname, surname, password, phone, email, positionId}:IRegistration) => {
+    const onFinish = async ({login, firstname, lastname, surname, password, phone, email, positionId}:IRegistration) => {
         setLoading(true)
          
         //вывод инфы в консольку
@@ -88,10 +88,7 @@ const Registration = ({setRegFromOpened}: Props) => {
         registration(login, firstname, lastname, surname, password, phone, email, positionId[1]).then(() => {
             console.log("Я здесь зарегал пользовтеля0");
             
-            //message.success('Пользователь зарегистрирован!');
-            console.log("Я здесь зарегал пользовтеля1");
-            userStore.login(login, password)
-            navigate('/dashboard')
+            
         }).catch(error => {
             if (error.response.data === 'Login already exist') {
                 message.warning('Логин уже используется!');
@@ -101,8 +98,18 @@ const Registration = ({setRegFromOpened}: Props) => {
                 message.error('Ошибка регистрации пользователя!');
             }
         }).finally(() => {
-            setLoading(false)
+           // setLoading(false)
         })
+
+        try {
+            console.log("Я здесь пытаюсь войти");
+            await userStore.login(login, password)
+            console.log("Вошел");
+            navigate('/dashboard')
+        } catch (error) {
+        }
+        setLoading(false)
+
     }
 
     const checkPhoneError = (value: any) => {
